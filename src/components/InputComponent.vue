@@ -12,6 +12,7 @@ import { mapActions, mapState } from 'pinia';
 import {
   defineComponent, Ref, ref, UnwrapRef,
 } from 'vue';
+import { getHTML } from '../modules/crawling/crawling';
 import { useUrlDataStore } from '../store/urlData';
 
 export default defineComponent({
@@ -27,6 +28,8 @@ export default defineComponent({
     ]),
     handleClickButton() {
       this.setUri(this.uri);
+      const test = getHTML(this.uri);
+      console.log(test);
     },
   },
   setup: () => {
