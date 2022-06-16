@@ -1,7 +1,3 @@
-<template>
-  <InputComponent/>
-</template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
 import InputComponent from './components/InputComponent.vue';
@@ -13,6 +9,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <InputComponent/>
+</template>
 
 <style lang="scss">
 #app {
