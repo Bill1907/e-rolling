@@ -1,17 +1,6 @@
-<template>
-  <div>
-    <label for="uri">URI
-      <input type="text" id="uri" v-model="uri">
-    </label>
-    <button @click="handleClickButton">Search</button>
-  </div>
-</template>
-
 <script lang="ts">
 import { mapActions, mapState } from 'pinia';
-import {
-  defineComponent, Ref, ref, UnwrapRef,
-} from 'vue';
+import { defineComponent } from 'vue';
 import { getHTML } from '../modules/crawling/crawling';
 import { useUrlDataStore } from '../store/urlData';
 
@@ -24,20 +13,27 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(useUrlDataStore, [
-      'setUri',
+      'setUri', 'addImageList',
     ]),
-    handleClickButton() {
+    async handleClickButton() {
       this.setUri(this.uri);
-      const test = getHTML(this.uri);
-      console.log(test);
+      const imageList: string[] | string = await getHTML(this.uri);
+      if (Array.isArray(imageList)) {
+        imageList.forEach((image: string) => this.addImageList(image));
+      }
     },
-  },
-  setup: () => {
-    const uri: Ref<UnwrapRef<string>> = ref('');
-    return { uri };
   },
 });
 </script>
+
+<template>
+  <div>
+    <label for="uri">URI
+      <input type="text" id="uri" v-model="uri">
+    </label>
+    <button @click="handleClickButton">Search</button>
+  </div>
+</template>
 
 <style scoped lang="scss">
 </style>
