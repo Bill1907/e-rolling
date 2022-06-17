@@ -1,39 +1,36 @@
-<script lang="ts">
-import { mapActions, mapState } from 'pinia';
-import { defineComponent } from 'vue';
-import { getHTML } from '../modules/crawling/crawling';
-import { useUrlDataStore } from '../store/urlData';
+<script setup lang="ts">
+import {
+  defineProps, defineEmits, ref, onMounted,
+} from 'vue';
+import type { Ref } from 'vue';
 
-export default defineComponent({
-  name: 'InputComponent',
-  computed: {
-    ...mapState(useUrlDataStore, [
-      'uri',
-    ]),
-  },
-  methods: {
-    ...mapActions(useUrlDataStore, [
-      'setUri', 'addImageList',
-    ]),
-    async handleClickButton() {
-      this.setUri(this.uri);
-      const imageList: string[] | string = await getHTML(this.uri);
-      if (Array.isArray(imageList)) {
-        imageList.forEach((image: string) => this.addImageList(image));
-      }
-    },
-  },
+const props = defineProps<{uri: string}>();
+const emit = defineEmits(['handleSearchBtn']);
+const searchInput: Ref<string> = ref('');
+
+onMounted(() => {
+  searchInput.value = props.uri;
 });
+
 </script>
 
 <template>
-  <div>
-    <label for="uri">URI
-      <input type="text" id="uri" v-model="uri">
-    </label>
-    <button @click="handleClickButton">Search</button>
+  <div class="uri-input-area">
+    <div class="default-width">
+      <label for="uri">URI
+        <input
+          type="text"
+          id="uri"
+          v-model="searchInput"
+          />
+      </label>
+      <button @click="emit('handleSearchBtn', searchInput)">Search</button>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.uri-input-area {
+  display: flex;
+}
 </style>
