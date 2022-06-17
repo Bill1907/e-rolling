@@ -1,26 +1,28 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import InputComponent from './components/InputComponent.vue';
+import ImageListPart from './views/ImageListPart.vue';
+import { useUrlDataStore } from './store/urlData';
+import { getHTML } from './modules/crawling/crawling';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    InputComponent,
-  },
-});
+const urlDataStore = useUrlDataStore();
+const { uri, imageList, addImageList } = urlDataStore;
+
+const handleSearchBtn = async (value: string) => {
+  urlDataStore.$patch({
+    uri: value,
+  });
+  const list: string[] | string = await getHTML(value);
+  if (Array.isArray(list)) {
+    list.forEach((image: string) => addImageList(image));
+  }
+};
 </script>
 
 <template>
-  <InputComponent/>
+  <InputComponent :uri="uri" @handleSearchBtn="handleSearchBtn"/>
+  <ImageListPart :list="imageList" />
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
