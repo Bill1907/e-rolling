@@ -13,9 +13,5 @@ export const useUrlDataStore = defineStore('urlData', {
     selectImageList: [],
   }),
   getters: {},
-  actions: {
-    addImageList(data: string) {
-      this.imageList.push(data);
-    },
-  },
+  actions: {},
 });
