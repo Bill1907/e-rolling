@@ -1,17 +1,17 @@
 import { defineStore } from 'pinia';
 
+interface urlDataStoreState {
+  uri: string
+  imageList: string[]
+  selectImageList: string[]
+}
+
 export const useUrlDataStore = defineStore('urlData', {
-  state: () => ({
-    uri: 'https://unsplash.com/' as string,
-    imageList: [] as string[],
+  state: (): urlDataStoreState => ({
+    uri: 'https://unsplash.com/',
+    imageList: [],
+    selectImageList: [],
   }),
   getters: {},
-  actions: {
-    setUri(data: string) {
-      this.uri = data;
-    },
-    addImageList(data: string) {
-      this.imageList.push(data);
-    },
-  },
+  actions: {},
 });

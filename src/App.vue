@@ -5,22 +5,33 @@ import { useUrlDataStore } from './store/urlData';
 import { getHTML } from './modules/crawling/crawling';
 
 const urlDataStore = useUrlDataStore();
-const { uri, imageList, addImageList } = urlDataStore;
+const { uri, imageList } = urlDataStore;
 
 const handleSearchBtn = async (value: string) => {
+  // uri data change
   urlDataStore.$patch({
     uri: value,
   });
   const list: string[] | string = await getHTML(value);
   if (Array.isArray(list)) {
-    list.forEach((image: string) => addImageList(image));
+    list.forEach((image: string) => {
+      urlDataStore.$patch((state) => {
+        state.imageList.push(image);
+      });
+    });
   }
+};
+
+const setSelectImageList = (value: string[]) => {
+  urlDataStore.$patch((state) => {
+    state.selectImageList = value;
+  });
 };
 </script>
 
 <template>
   <InputComponent :uri="uri" @handleSearchBtn="handleSearchBtn"/>
-  <ImageListPart :list="imageList" />
+  <ImageListPart :list="imageList" @setSelectImageList="setSelectImageList"/>
 </template>
 
 <style lang="scss">
