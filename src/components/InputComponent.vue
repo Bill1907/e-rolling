@@ -16,7 +16,7 @@ onMounted(() => {
 
 <template>
   <div class="uri-input-area">
-    <div class="default-width">
+    <div class="url-input-box">
       <label for="uri">URI
         <input
           type="text"

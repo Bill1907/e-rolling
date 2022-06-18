@@ -30,8 +30,10 @@ const setSelectImageList = (value: string[]) => {
 </script>
 
 <template>
-  <InputComponent :uri="uri" @handleSearchBtn="handleSearchBtn"/>
-  <ImageListPart :list="imageList" @setSelectImageList="setSelectImageList"/>
+  <div id="wrap">
+    <InputComponent :uri="uri" @handleSearchBtn="handleSearchBtn"/>
+    <ImageListPart :list="imageList" @setSelectImageList="setSelectImageList"/>
+  </div>
 </template>
 
 <style lang="scss">
