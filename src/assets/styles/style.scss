@@ -7,4 +7,30 @@
   margin-top: 60px;
 }
 
-.default-width {width: 80vw}
+#wrap {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+}
+
+#imageWrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.url-input-box {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+}
+
+.image-wrap-box{
+
+}
+
+img {
+  width: 10vw;
+}

@@ -19,20 +19,22 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    v-for="(imageSrc, idx) in imageSrcList"
-    :key="`imageSrc_${idx}`"
-  >
-    <div>
-      <label :for="`imageSrc_${idx}`">
-        <input
-          type="checkbox"
-          :id="`imageSrc_${idx}`"
-          :value="imageSrc"
-          v-model="selectImages"
-        />
-        <img :src="imageSrc" alt=""/>
-      </label>
+  <div id="imageWrapper">
+    <div
+      v-for="(imageSrc, idx) in imageSrcList"
+      :key="`imageSrc_${idx}`"
+    >
+      <div class="image-wrap-box">
+        <label :for="`imageSrc_${idx}`">
+          <input
+            type="checkbox"
+            :id="`imageSrc_${idx}`"
+            :value="imageSrc"
+            v-model="selectImages"
+          />
+          <img :src="imageSrc" alt=""/>
+        </label>
+      </div>
     </div>
   </div>
 </template>
