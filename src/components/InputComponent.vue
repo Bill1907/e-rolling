@@ -5,7 +5,7 @@ import {
 import type { Ref } from 'vue';
 
 const props = defineProps<{uri: string}>();
-const emit = defineEmits(['handleSearchBtn']);
+const emit = defineEmits(['handleSearchBtn', 'handleDownloadBtn']);
 const searchInput: Ref<string> = ref('');
 
 onMounted(() => {
@@ -25,6 +25,7 @@ onMounted(() => {
           />
       </label>
       <button @click="emit('handleSearchBtn', searchInput)">Search</button>
+      <button @click="emit('handleDownloadBtn')">Download</button>
     </div>
   </div>
 </template>

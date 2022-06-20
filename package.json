@@ -13,7 +13,9 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@types/adm-zip": "^0.5.0",
     "@types/puppeteer": "^5.4.6",
+    "adm-zip": "^0.5.9",
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.11",
     "core-js": "^3.8.3",
@@ -22,6 +24,7 @@
     "pinia": "^2.0.0-rc.10",
     "puppeteer": "^14.4.0",
     "ts-loader": "~8.2.0",
+    "electron": "^13.0.0",
     "vue": "^3.2.13"
   },
   "devDependencies": {
@@ -34,6 +37,7 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-airbnb": "^6.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
+    "babel-eslint": "^10.1.0",
     "electron": "^13.0.0",
     "electron-devtools-installer": "^3.1.0",
     "eslint": "^7.32.0",

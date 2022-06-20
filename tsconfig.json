@@ -12,8 +12,12 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "typeRoots": [
+      "./src/types",
+      "./node_modules/@types/"
+    ],
     "types": [
-      "webpack-env"
+      "webpack-env",
     ],
     "paths": {
       "~/*": [
