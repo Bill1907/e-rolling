@@ -3,7 +3,8 @@ import InputComponent from './components/InputComponent.vue';
 import ImageListPart from './views/ImageListPart.vue';
 import { useUrlDataStore } from './store/urlData';
 import { getHTML } from './modules/crawling';
-import { getFileList } from './modules/fs';
+import { getImageZipFile, getImageUri } from './modules/fs';
+import { singleImageFileDownlaod, zipFileDownload } from './modules/download';
 
 // store
 const urlDataStore = useUrlDataStore();
@@ -25,7 +26,13 @@ const handleSearchBtn = async (value: string) => {
 };
 
 const handleDownloadBtn = () => {
-  getFileList(urlDataStore.selectImageList);
+  if (urlDataStore.selectImageList.length <= 1) {
+    const imageResource = getImageUri(urlDataStore.selectImageList[0]);
+    singleImageFileDownlaod(imageResource);
+  } else {
+    const buffer: string = getImageZipFile(urlDataStore.selectImageList);
+    zipFileDownload(buffer);
+  }
 };
 </script>
 

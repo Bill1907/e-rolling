@@ -1,3 +1,5 @@
+import AdmZip from 'adm-zip';
+
 const getImageUri = (uri: string): string => {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
@@ -12,19 +14,19 @@ const getImageUri = (uri: string): string => {
   return canvas.toDataURL('image/png');
 };
 
-const dataURLtoBlob = (dataURL: string) => {
-  const byteString = atob(dataURL.split(',')[1]);
-  const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
-  const ab = new ArrayBuffer(byteString.length);
-  const ia = new Uint8Array(ab);
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  return new Blob([ab], { type: mimeString });
+const zipFile = (list: string[]) => {
+  const zip = new AdmZip();
+  list.forEach((file, index) => {
+    const data = file.replace(/^data:image\/\w+;base64,/, '');
+    const buf = Buffer.from(data, 'base64');
+    zip.addFile(`image_${index}.png`, buf);
+  });
+  return zip.toBuffer();
 };
 
-export const getFileList = (srcList: string[]) : void => {
-  const result = srcList.map((src) => dataURLtoBlob(getImageUri(src)));
-  console.log(result);
+const getImageZipFile = (srcList: string[]) : string => {
+  const result = srcList.map((src) => getImageUri(src));
+  return zipFile(result);
 };
+
+export { getImageZipFile, getImageUri, zipFile };
