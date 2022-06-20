@@ -1,7 +1,4 @@
-import * as fs from 'fs';
-import axios from 'axios';
-
-const getImageUri = (uri: string) => {
+const getImageUri = (uri: string): string => {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   const img = new Image();
@@ -15,7 +12,19 @@ const getImageUri = (uri: string) => {
   return canvas.toDataURL('image/png');
 };
 
+const dataURLtoBlob = (dataURL: string) => {
+  const byteString = atob(dataURL.split(',')[1]);
+  const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], { type: mimeString });
+};
+
 export const getFileList = (srcList: string[]) : void => {
-  const result = srcList.map((src) => getImageUri(src));
+  const result = srcList.map((src) => dataURLtoBlob(getImageUri(src)));
   console.log(result);
 };
