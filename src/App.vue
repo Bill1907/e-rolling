@@ -2,48 +2,42 @@
 import InputComponent from './components/InputComponent.vue';
 import ImageListPart from './views/ImageListPart.vue';
 import { useUrlDataStore } from './store/urlData';
-import { getHTML } from './modules/crawling/crawling';
+import { getHTML } from './modules/crawling';
+import { getFileList } from './modules/fs';
 
 // store
 const urlDataStore = useUrlDataStore();
-const { uri, imageList, selectImageList } = urlDataStore;
 
+// data setup
 const setSelectImageList = (value: string[]) => {
-  urlDataStore.$patch((state) => {
-    state.selectImageList = value;
-  });
+  urlDataStore.selectImageList = value;
 };
 
 // event handler
 const handleSearchBtn = async (value: string) => {
-  // uri data change
-  urlDataStore.$patch({
-    uri: value,
-  });
+  urlDataStore.uri = value;
   const list: string[] | string = await getHTML(value);
   if (Array.isArray(list)) {
     list.forEach((image: string) => {
-      urlDataStore.$patch((state) => {
-        state.imageList.push(image);
-      });
+      urlDataStore.imageList.push(image);
     });
   }
 };
 
 const handleDownloadBtn = () => {
-  console.log(selectImageList);
+  getFileList(urlDataStore.selectImageList);
 };
 </script>
 
 <template>
   <div id="wrap">
     <InputComponent
-      :uri="uri"
+      :uri="urlDataStore.uri"
       @handleSearchBtn="handleSearchBtn"
       @handleDownloadBtn="handleDownloadBtn"
     />
     <ImageListPart
-      :list="imageList"
+      :list="urlDataStore.imageList"
       @setSelectImageList="setSelectImageList"
     />
   </div>
