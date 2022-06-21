@@ -17,21 +17,26 @@ onMounted(() => {
 <template>
   <div class="uri-input-area">
     <div class="url-input-box">
-      <label for="uri">URI
+      <label for="uri">
         <input
           type="text"
           id="uri"
+          placeholder="🔍 검색"
           v-model="searchInput"
-          />
+          @keydown.enter="emit('handleSearchBtn', searchInput)"
+        />
       </label>
-      <button @click="emit('handleSearchBtn', searchInput)">Search</button>
-      <button @click="emit('handleDownloadBtn')">Download</button>
+      <button @click="emit('handleDownloadBtn')">
+        <img
+          class="downlaod-icon"
+          src="../assets/download.png"
+          alt=""
+        />
+      </button>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.uri-input-area {
-  display: flex;
-}
+
 </style>

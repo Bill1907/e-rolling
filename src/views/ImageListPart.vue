@@ -32,7 +32,12 @@ onMounted(() => {
             :value="imageSrc"
             v-model="selectImages"
           />
-          <img :src="imageSrc" alt=""/>
+          <img
+            :class="selectImages.includes(imageSrc)? 'image-selected': ''"
+            loading="lazy"
+            :src="imageSrc"
+            alt=""
+          />
         </label>
       </div>
     </div>

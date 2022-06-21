@@ -54,20 +54,68 @@ body {
 }
 
 #wrap {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2vh;
 }
+#imageWrapper {
+  margin-top: 10vh;
+}
+
+.uri-input-area{
+  position: fixed;
+  top: 5%;
+}
 
 .url-input-box {
-  width: 80vw;
+  width: 100vw;
   display: flex;
   justify-content: center;
   gap: 2vw;
+  input {
+    border: none;
+    background-color: rgba(255, 252, 196, 0.75);
+    padding: 1vh 2vw;
+    width: 70vw;
+    height: 7vh;
+    font-size: large;
+    border-radius: 30px;
+  }
+  input:hover {
+    background-color: rgba(255, 252, 196, 0.5);
+  }
+  input:focus {
+    outline: none;
+    box-shadow: inset 0px 0px 4px 0px rgba(0,0,0,1);
+    background-color: rgba(255, 252, 196, 0.5);
+  }
+  button {
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.downlaod-icon {
+  width: 3vw;
 }
 
 img {
   width: 80%;
+  border-radius: 18px;
+}
+
+.image-wrap-box {
+  input{
+    display: none;
+  }
+  img:hover {
+    border: 3px solid rgba(255, 165, 0, 0.5);
+  }
+}
+
+.image-selected {
+  border: 5px solid rgba(255, 89, 0, 0.89);
 }
