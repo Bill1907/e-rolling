@@ -8,7 +8,7 @@ interface urlDataStoreState {
 
 export const useUrlDataStore = defineStore('urlData', {
   state: (): urlDataStoreState => ({
-    uri: 'https://unsplash.com/',
+    uri: '',
     imageList: [],
     selectImageList: [],
   }),

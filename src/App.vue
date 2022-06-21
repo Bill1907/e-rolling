@@ -17,11 +17,10 @@ const setSelectImageList = (value: string[]) => {
 // event handler
 const handleSearchBtn = async (value: string) => {
   urlDataStore.uri = value;
+  urlDataStore.imageList = [];
   const list: string[] | string = await getHTML(value);
   if (Array.isArray(list)) {
-    list.forEach((image: string) => {
-      urlDataStore.imageList.push(image);
-    });
+    urlDataStore.imageList.push(...list);
   }
 };
 
@@ -44,6 +43,7 @@ const handleDownloadBtn = async () => {
       @handleDownloadBtn="handleDownloadBtn"
     />
     <ImageListPart
+      v-if="urlDataStore.imageList.length > 0"
       :list="urlDataStore.imageList"
       @setSelectImageList="setSelectImageList"
     />
