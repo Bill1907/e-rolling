@@ -7,12 +7,40 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root{
-    --bg-color: rgba(128, 128, 128, 0.18);
+    --bg-color: rgba(128, 128, 128);
   }
 }
 @media (prefers-color-scheme: light) {
   :root{
     --bg-color: white;
+  }
+}
+
+@media all and (min-width:320px) {
+  #imageWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  image-wrap-box {
+    width: 20vw;
+  }
+}
+@media all and (min-width:768px) {
+  #imageWrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  image-wrap-box {
+    width: 15vw;
+  }
+}
+@media all and (min-width:1024px) {
+  #imageWrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  image-wrap-box {
+    width: 10vw;
   }
 }
 
@@ -23,7 +51,7 @@ body {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-} s
+}
 
 #wrap {
   width: 100vw;
@@ -33,11 +61,6 @@ body {
   gap: 2vh;
 }
 
-#imageWrapper {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
-
 .url-input-box {
   width: 80vw;
   display: flex;
@@ -45,10 +68,6 @@ body {
   gap: 2vw;
 }
 
-.image-wrap-box{
-
-}
-
 img {
-  width: 10vw;
+  width: 80%;
 }
