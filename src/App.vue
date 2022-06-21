@@ -25,12 +25,12 @@ const handleSearchBtn = async (value: string) => {
   }
 };
 
-const handleDownloadBtn = () => {
+const handleDownloadBtn = async () => {
   if (urlDataStore.selectImageList.length <= 1) {
-    const imageResource = getImageUri(urlDataStore.selectImageList[0]);
+    const imageResource = await getImageUri(urlDataStore.selectImageList[0]);
     singleImageFileDownlaod(imageResource);
   } else {
-    const buffer: string = getImageZipFile(urlDataStore.selectImageList);
+    const buffer: string = await getImageZipFile(urlDataStore.selectImageList);
     zipFileDownload(buffer);
   }
 };
