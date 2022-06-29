@@ -1,24 +1,6 @@
-# pinterest-clone
+# E-rolling
 
-## Project setup
-```
-yarn install
-```
+using Vue3, Typescript, Pinia, Electron
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 발표자료
+https://slides.com/boseong/deck/edit
