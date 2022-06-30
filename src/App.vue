@@ -33,10 +33,18 @@ const handleDownloadBtn = async () => {
     zipFileDownload(buffer);
   }
 };
+
+const handleScrollUp = (e: Event) => {
+  e.preventDefault();
+  document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
 </script>
 
 <template>
-  <div id="wrap">
+  <div
+    id="wrap"
+  >
     <InputComponent
       :uri="urlDataStore.uri"
       @handleSearchBtn="handleSearchBtn"
@@ -47,6 +55,12 @@ const handleDownloadBtn = async () => {
       :list="urlDataStore.imageList"
       @setSelectImageList="setSelectImageList"
     />
+    <button
+      class="up-btn"
+      @click="handleScrollUp"
+    >
+      <img style="width: 40px" src="../src/assets/upArrow.png" alt="맨위로">
+    </button>
   </div>
 </template>
 

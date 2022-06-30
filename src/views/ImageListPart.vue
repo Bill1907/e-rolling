@@ -19,7 +19,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="imageWrapper">
+  <div
+    id="imageWrapper"
+  >
     <div
       v-for="(imageSrc, idx) in imageSrcList"
       :key="`imageSrc_${idx}`"
