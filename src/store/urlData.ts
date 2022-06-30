@@ -8,7 +8,7 @@ interface urlDataStoreState {
 
 export const useUrlDataStore = defineStore('urlData', {
   state: (): urlDataStoreState => ({
-    uri: '',
+    uri: 'https://www.naver.com/',
     imageList: [],
     selectImageList: [],
   }),

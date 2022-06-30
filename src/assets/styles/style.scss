@@ -7,7 +7,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root{
-    --bg-color: rgba(128, 128, 128);
+    --bg-color: rgb(243, 242, 242);
   }
 }
 @media (prefers-color-scheme: light) {
@@ -92,6 +92,7 @@ body {
     background-color: rgba(255, 252, 196, 0.5);
   }
   button {
+    cursor: pointer;
     border: none;
     border-radius: 25px;
     background-color: rgba(0, 0, 0, 0);
@@ -108,6 +109,7 @@ img {
 }
 
 .image-wrap-box {
+  padding: 1vh;
   input{
     display: none;
   }
@@ -118,4 +120,13 @@ img {
 
 .image-selected {
   border: 5px solid rgba(255, 89, 0, 0.89);
+}
+
+.up-btn {
+  position: fixed;
+  bottom: 5vh;
+  right: 5vh;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
